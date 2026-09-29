@@ -1,0 +1,18 @@
+public static class SimpleCalculator
+{
+    public static string Calculate(int operand1, int operand2, string? operation)
+    {
+        if (operation == null)
+        {
+            throw new ArgumentNullException(nameof(operation), "Operation cannot be null.");
+        }
+        return operation switch
+        {
+            "+" => $"{operand1} + {operand2} = {SimpleOperation.Addition(operand1, operand2)}",
+            "*" => $"{operand1} * {operand2} = {SimpleOperation.Multiplication(operand1, operand2)}",
+            "/" => operand2 == 0 ? "Division by zero is not allowed." : $"{operand1} / {operand2} = {SimpleOperation.Division(operand1, operand2)}",
+            "" => throw new ArgumentException("Operation cannot be empty.", nameof(operation)),
+            _ => throw new ArgumentOutOfRangeException(nameof(operation), "Unknown operation.")
+        };
+    }
+}
